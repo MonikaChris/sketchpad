@@ -28,9 +28,11 @@ body {
 }
 
 #screen {
-    background-color: white;
+    background-color: rgb(151, 149, 149);
     grid-column: 14 / 80;
     grid-row: 10 / 76;
+    display: grid;
+    gap: 1px;
 }
 
 #label {
