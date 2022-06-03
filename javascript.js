@@ -31,17 +31,17 @@ function updateSliderLabel() {
 
 
 function drawGrid(gridSize) {
-    
-    clearGrid();
-    
     let cellNumber = gridSize**2;
     let screen = document.querySelector('#screen');
 
-    //Create grid cells
+    clearGrid();
+
+    //Create grid cells and add event listener to each cell
     for(let i = 0; i < cellNumber; i++) {
         let cell = document.createElement('div');
         cell.setAttribute('style', 'background-color: white;');
         screen.appendChild(cell);
+        cell.addEventListener('mouseover', color);
     }
 
     //Set grid dimensions
@@ -56,4 +56,9 @@ function clearGrid() {
     while(screen.firstChild) {
         screen.removeChild(screen.firstChild);
     }
+}
+
+function color() {
+    let color = document.querySelector('#label-left-button').textContent;
+    this.setAttribute('style', `background-color: ${color}`);
 }
