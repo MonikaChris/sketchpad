@@ -2,6 +2,8 @@
 let slider = document.querySelector('input[type="range"]');
 let gridSize = document.querySelector('input[type="range"]').value;
 let clearButton = document.querySelector('#right-button');
+let colorButton = document.querySelector('#left-button');
+let drawingColor = 'black';
 
 drawGrid(gridSize);
 
@@ -9,6 +11,7 @@ drawGrid(gridSize);
 //Event Listeners
 slider.addEventListener('change', updateGrid);
 clearButton.addEventListener('mousedown', updateGrid);
+colorButton.addEventListener('mousedown', changeColor);
 
 
 
@@ -61,7 +64,51 @@ function clearGrid() {
     }
 }
 
+
 function color() {
-    let color = document.querySelector('#left-button').textContent;
-    this.setAttribute('style', `background-color: ${color}`);
+    button = document.querySelector('#left-button');
+    if (button.textContent === 'Rainbow') {
+        drawingColor = randomColor();
+    }
+
+    this.setAttribute('style', `background-color: ${drawingColor}`);
+}
+
+
+function changeColor(color) {
+    button = document.querySelector('#left-button');
+    
+    if (button.textContent === 'Black') {
+        button.textContent = 'Rainbow';
+        drawingColor = randomColor();
+        button.setAttribute('style', 'background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);')
+
+    }
+
+    else if (button.textContent === 'Rainbow') {
+        button.textContent = 'Erase';
+        drawingColor = 'white';
+        button.setAttribute('style', 'color: rgb(154, 151, 151); text-shadow: 2px 2px 2px black;');
+    }
+
+    else {
+    drawingColor = 'black';
+    button.textContent = 'Black';
+    button.setAttribute('style', 'color: black;');
+    }
+
+}
+
+
+function randomColor() {
+    let r = randomNum(0, 255);
+    let g = randomNum(0, 255);
+    let b = randomNum(0, 255);
+
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+
+function randomNum(min, max) {
+    return min + Math.floor(Math.random() * (max - min + 1));
 }

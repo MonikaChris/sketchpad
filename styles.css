@@ -71,24 +71,12 @@ body {
     color: black;
 }
 
-/*#label-left-button {
-    font-family: 'Cookie', cursive;
-    color: black;
-    font-size: 2.5rem;
-    grid-column: 13/30;
-    grid-row: 82/95;
-}*/
-
 #right-button-depth {
-    /*grid-column: 74/95;
-    grid-row: 78/95;*/
     grid-column: 71/92;
     grid-row: 78/95;
 }
 
 #right-button {
-    /*grid-column: 72/95;
-    grid-row: 78/95;*/
     grid-column: 69/92;
     grid-row: 78/95;
     font-family: 'Cookie', cursive;
@@ -97,14 +85,6 @@ body {
     font-size: 2.5rem;
 }
 
-/*#label-right-button {
-    font-family: 'Cookie', cursive;
-    color: rgb(212, 240, 246);
-    text-shadow: 2px 2px 2px black;
-    font-size: 2.5rem;
-    grid-column-start: 75;
-    grid-row-start: 82;
-}*/
 
 #slider-container {
     grid-column:40/60;
@@ -125,3 +105,4 @@ input[type="range"] {
     color: rgb(181, 8, 8);
     font-size: 1.3rem;
 }
+
