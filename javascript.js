@@ -1,12 +1,15 @@
 //Initial Setup
 let slider = document.querySelector('input[type="range"]');
 let gridSize = document.querySelector('input[type="range"]').value;
+let clearButton = document.querySelector('#right-button');
 
 drawGrid(gridSize);
 
 
 //Event Listeners
-slider.addEventListener("change", updateGrid);
+slider.addEventListener('change', updateGrid);
+clearButton.addEventListener('mousedown', updateGrid);
+
 
 
 //Functions
@@ -59,6 +62,6 @@ function clearGrid() {
 }
 
 function color() {
-    let color = document.querySelector('#label-left-button').textContent;
+    let color = document.querySelector('#left-button').textContent;
     this.setAttribute('style', `background-color: ${color}`);
 }
