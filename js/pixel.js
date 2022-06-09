@@ -109,7 +109,7 @@ function save() {
 }
 
 function getScreenArt() {
-//This function stores the screen pixel colors in an array
+    //Array to hold all screen pixel colors
     let screenArt = [];
     let pixels = document.querySelectorAll('#screen > div');
     

@@ -2,20 +2,43 @@ body {
     height: 100vh;
     background-color: pink;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    text-align: center;
 }
 
-.title {
+h1 {
     font-family: 'Cookie', cursive;
     color: goldenrod;
     text-shadow: 1px 1px 1px #fbff00;
-    
+    font-size: 3rem;
 }
 
 .container {
     flex: 1;
     display: flex;
     justify-content: space-around;
+}
+
+#frame1, #frame2 {
+    position: relative;
+}
+
+.frame-image{
+    height: 650px;
+    width: 650px;
+}
+
+#art1, #art2 {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 600px;
+    height: 600px;
+    background-color: white;
+    display: grid;
     
 }
+
+
+
+
