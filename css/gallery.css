@@ -1,0 +1,21 @@
+body {
+    height: 100vh;
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-family: 'Cookie', cursive;
+    color: goldenrod;
+    text-shadow: 1px 1px 1px #fbff00;
+    
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    
+}
