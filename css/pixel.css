@@ -117,7 +117,6 @@ body {
     font-size: 2.5rem;
 }
 
-
 #slider-container {
     grid-column:40/60;
     grid-row: 82/95;
@@ -138,3 +137,19 @@ input[type="range"] {
     font-size: 1.3rem;
 }
 
+.footer-button {
+    position: absolute;
+    bottom: 2.2rem;
+    right: 1.5rem;
+}
+
+#delete {
+    font-family: "Gill Sans", sans-serif; 
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    background-color: red;
+    color: white;
+    padding: 1.7rem;
+    border: solid;
+    border-color: white;
+}

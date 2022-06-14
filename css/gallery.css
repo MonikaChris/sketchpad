@@ -35,10 +35,89 @@ h1 {
     width: 600px;
     height: 600px;
     background-color: white;
-    display: grid;
-    
+    display: grid;  
 }
 
+#trash1, #trash2 {
+    height: 3.5rem;
+    width: 3rem;    
+}
+ 
+ #trash1 {
+     position: absolute;
+     transform: translateX(-1350%) translateY(1155%);   
+ }
+
+ #trash2 {
+    position: absolute;
+    transform: translateX(-100%) translateY(1155%);
+ }
+
+ #ribbon1, #ribbon2 {
+     height: 10rem;
+     width: 7rem;
+ }
+
+ #ribbon1 {
+     position: absolute;
+     transform: translateX(-80%) translateY(330%);
+ }
+
+ #ribbon2 {
+     position: absolute;
+     transform: translateX(-600%) translateY(330%);
+ }
+
+ #zzz {
+     width: 7rem;
+     height: 6rem;
+     padding-left: 6rem;  
+ }
+
+ #hole {
+     width: 10rem;
+     height: 4rem;
+     border-radius: 50%;
+     background-color: black;
+     margin-left: auto;
+     margin-right: auto;
+     margin-bottom: 3rem;
+ }
+
+ .gopher-static, .gopher-animate {
+     width: 15rem;
+     height: 9rem;
+     transform: translateX(.8rem) translateY(2rem);
+ }
+
+ .gopher-animate {
+    animation: 3s popup;
+ }
+
+ @keyframes popup {
+     from {
+         height: 0;
+     }
+
+     25% {
+         height: 2rem;
+     }
+
+     50% {
+         height: 4rem;
+     }
+
+     75% {
+         height: 6rem;
+     }
 
 
+     to {
+         height: 9rem;
 
+     }
+ }
+
+ .hide {
+     display: none;
+ }

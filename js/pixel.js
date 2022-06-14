@@ -4,6 +4,7 @@ let loginButton = document.querySelector('#login');
 let saveButton = document.querySelector('#save');
 let galleryButton = document.querySelector('#gallery');
 let logOutButton = document.querySelector('#logout');
+let deleteButton = document.querySelector('#delete');
 let currentUsername;
 let currentUser;
 
@@ -19,6 +20,7 @@ registerButton.addEventListener('click', register);
 loginButton.addEventListener('click', login);
 saveButton.addEventListener('click', save);
 logOutButton.addEventListener('click', logOut);
+deleteButton.addEventListener('click', deleteUser);
 
 //Event Listeners for pixel-sketch
 slider.addEventListener('change', updateGrid);
@@ -35,10 +37,9 @@ if("currentUsername" in localStorage) {
 
     //Change button display after logging in
     loggedInButtonDisplay();
-
 }
-else currentUsername = null;
 
+else currentUsername = null;
 
 //Start pixel-sketch
 drawGrid(gridSize);
@@ -51,7 +52,7 @@ function loggedInButtonDisplay() {
     saveButton.classList.remove('hide');
     galleryButton.classList.remove('hide');
     logOutButton.classList.remove('hide');
-
+    deleteButton.classList.remove('hide');
 }
 
 function register() {
@@ -59,6 +60,7 @@ function register() {
     if (!(name in localStorage)) {
         let user = new User(name);
         localStorage.setItem(name, JSON.stringify(user));
+        alert('Account created!');
     }
 
     else alert('You are already registered! Log in or enter a different username.');
@@ -66,8 +68,12 @@ function register() {
 
 function login() {
     let name = window.prompt('Enter your username:');
+    
+    if (name === null) return;
+
     if (!(name in localStorage)) {
-        name = prompt("Username not found. Please enter valid username or register new account.");
+        alert('Username not found. Please enter valid username or register a new account.');
+        login();
     }
 
     else {
@@ -75,23 +81,22 @@ function login() {
         currentUsername = name;
         currentUser = JSON.parse(localStorage.getItem(name));
 
-
-        
+        //Change button display after logging in
+        loggedInButtonDisplay();
     }
-
-    //Change button display after logging in
-    loggedInButtonDisplay();
 }
 
 function save() {
-
+    //Return if gallery is full
     if(currentUser.myGallery.artwork1 !== null && currentUser.myGallery.artwork2 !== null) {
         alert("Unfortunately your gallery is full. You'll need to delete art to make room for new creations.")
         return;
     }
 
+    //Otherwise, store array of pixel color values for new art
     let newArt = getScreenArt();
 
+    //Assign new art array to local storage to display in gallery
     if(currentUser.myGallery.artwork1 === null) {        
         currentUser.myGallery.artwork1 = newArt;
         localStorage.setItem(currentUsername, JSON.stringify(currentUser));
@@ -102,10 +107,8 @@ function save() {
         localStorage.setItem(currentUsername, JSON.stringify(currentUser));
     }
 
-    
-
+    //Confirmation message
     alert("Your artwork has been saved! Go to your gallery to view your saved art :)");
-
 }
 
 function getScreenArt() {
@@ -119,50 +122,64 @@ function getScreenArt() {
 }
 
 function logOut() {
+    //Update buttons
     registerButton.classList.remove('hide');
     loginButton.classList.remove('hide');
     saveButton.classList.add('hide');
     galleryButton.classList.add('hide');
     logOutButton.classList.add('hide');
+    deleteButton.classList.add('hide');
 
+    //Update local storage
     localStorage.removeItem('currentUsername');
     currentUsername = null;
     currentUser = null;
 }
 
+function deleteUser() {
+    let answer = prompt('Are you sure you want to permanently delete your account? Type "Yes" or "No":');
+    
+    //Exit function if user hits cancel 
+    if (answer === null) return;
+    
+    answer.toLowerCase();
+
+    if (answer === 'yes' || answer === 'y') {
+        localStorage.removeItem(currentUsername);
+        localStorage.removeItem('currentUsername');
+        currentUsername = null;
+        
+        //Update buttons
+        logOut();
+
+        //Update Gopher and ribbon if applicable
+        clearGopher();
+    }
+}
+
+function clearGopher() {
+    if (JSON.parse(localStorage.getItem('ribbon1Present'))) {
+        localStorage.setItem('ribbon1Present', JSON.stringify(false));
+        localStorage.setItem('gopherPresent', JSON.stringify(false));
+    }
+
+    if (JSON.parse(localStorage.getItem('ribbon2Present'))) {
+        localStorage.setItem('ribbon2Present', JSON.stringify(false));
+        localStorage.setItem('gopherPresent', JSON.stringify(false));
+    }
+}
 
 //Objects
 function User(name) {
     this.name = name;
     this.myGallery = new Gallery;
-
-    this.deleteUser = function() {
-        let choice = window.prompt("Are you sure you want to delete your account?");
-        choice.toLowerCase;
-        if(choice === "yes" || choice === 'y') {
-            localStorage.removeItem(this);
-        }
-    }
 }
 
 function Gallery() {
     this.artwork1 = null;
     this.artwork2 = null;
-    
-    this.addArt = function(artwork) {
-        Object.values(this).forEach (art => {
-            if(!art) {
-                art = artwork;
-                return;
-            }
-        })
-        alert("Your gallery is full. Please delete one artwork to save new art.");
-    }
-
-    this.deleteArt = function(artwork) {
-        localStorage.removeItem(artwork);
-    }
 }
+
 
 //Functions for pixel-sketch
 function updateGrid() {
@@ -171,7 +188,6 @@ function updateGrid() {
     updateSliderLabel();
     drawGrid(gridSize);
 }
-
 
 function updateSliderLabel() {
     let sliderLabel = document.querySelector('#label-slider');
@@ -183,7 +199,6 @@ function updateSliderLabel() {
     
     else sliderLabel.textContent = `${gridSize}x${gridSize}`;
 }
-
 
 function drawGrid(gridSize) {
     let cellNumber = gridSize**2;
@@ -204,7 +219,6 @@ function drawGrid(gridSize) {
     document.querySelector('#screen').style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
 }
 
-
 function clearGrid() {
     let screen = document.querySelector('#screen');
 
@@ -212,7 +226,6 @@ function clearGrid() {
         screen.removeChild(screen.firstChild);
     }
 }
-
 
 function color() {
     button = document.querySelector('#left-button');
@@ -223,15 +236,13 @@ function color() {
     this.setAttribute('style', `background-color: ${drawingColor}`);
 }
 
-
 function changeColor(color) {
     button = document.querySelector('#left-button');
     
     if (button.textContent === 'Black') {
         button.textContent = 'Rainbow';
         drawingColor = randomColor();
-        button.setAttribute('style', 'background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);')
-
+        button.setAttribute('style', 'background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);');
     }
 
     else if (button.textContent === 'Rainbow') {
@@ -248,7 +259,6 @@ function changeColor(color) {
 
 }
 
-
 function randomColor() {
     let r = randomNum(0, 255);
     let g = randomNum(0, 255);
@@ -256,7 +266,6 @@ function randomColor() {
 
     return `rgb(${r}, ${g}, ${b})`;
 }
-
 
 function randomNum(min, max) {
     return min + Math.floor(Math.random() * (max - min + 1));
