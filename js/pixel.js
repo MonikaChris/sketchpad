@@ -57,6 +57,9 @@ function loggedInButtonDisplay() {
 
 function register() {
     let name = window.prompt('Enter your name:');
+
+    //Exit function if user clicks cancel
+    if (name === null) return;
     if (!(name in localStorage)) {
         let user = new User(name);
         localStorage.setItem(name, JSON.stringify(user));
@@ -69,6 +72,7 @@ function register() {
 function login() {
     let name = window.prompt('Enter your username:');
     
+    //Exit function if user clicks cancel
     if (name === null) return;
 
     if (!(name in localStorage)) {

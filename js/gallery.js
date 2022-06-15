@@ -19,9 +19,6 @@ hole.addEventListener('click', wakeGopher);
 
 //Initial Setup: set title, load any artwork, load ribbon and gopher if present
 document.querySelector('.title').textContent = `${username}'s Gallery`;
-/*localStorage.setItem('gopherPresent', JSON.stringify(false));
-localStorage.setItem('ribbon1Present', JSON.stringify(false));
-localStorage.setItem('ribbon2Present', JSON.stringify(false));*/
 
 if(user.myGallery.artwork1 !== null) {
     loadArt(user.myGallery.artwork1, '#art1');
