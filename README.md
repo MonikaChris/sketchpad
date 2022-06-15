@@ -8,9 +8,11 @@ bottom left button, and you can change the pixel resolution by adjusting the sli
 When you're finished, click "Save." You can save up to two artworks.
 To view your artworks, click "My Gallery."
 Once you've saved 2 artworks, you can wake the gopher by clicking on his burrow, and
-he will wake to select his favorite. The gopher will snooze until 2 creations are 
-present for him to judge.
+he will pop up to select his favorite. If you try clicking the gopher's burrow before
+2 creations are present for him to judge, you will see him snoozing.
 To delete an artwork, click the trash icon below the frame.
+To permanently delete your user account, click "Delete Account" on the homepage and
+follow the prompt to confirm.
 
 Photo Credits:
 1. Wooden Desk (background photo)

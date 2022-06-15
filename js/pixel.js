@@ -138,6 +138,9 @@ function logOut() {
     localStorage.removeItem('currentUsername');
     currentUsername = null;
     currentUser = null;
+
+    //Update Gopher and ribbon if applicable
+    clearGopher();
 }
 
 function deleteUser() {
@@ -155,9 +158,6 @@ function deleteUser() {
         
         //Update buttons
         logOut();
-
-        //Update Gopher and ribbon if applicable
-        clearGopher();
     }
 }
 
@@ -260,7 +260,6 @@ function changeColor(color) {
     button.textContent = 'Black';
     button.setAttribute('style', 'color: black;');
     }
-
 }
 
 function randomColor() {
