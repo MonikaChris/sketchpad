@@ -1,4 +1,7 @@
-# sketchpad
+# Sketchpad
+
+Live Site: https://monikachris.github.io/sketchpad/
+
 Pixel-Sketch allows you to produce digital etch-a-sketch-style creations and save them
 to your user gallery.
 To create an account, click "Register" and enter your username.
