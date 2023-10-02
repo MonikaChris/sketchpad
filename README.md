@@ -17,6 +17,11 @@ To delete an artwork, click the trash icon below the frame.
 To permanently delete your user account, click "Delete Account" on the homepage and
 follow the prompt to confirm.
 
+## Live Site Images
+
+![Homepage](images/Sketch1.png)
+![Gallery Page](images/sketch2.png)
+
 Photo Credits:
 1. Wooden Desk (background photo)
 Photo by Yasemin K. on Unsplash
